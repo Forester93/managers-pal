@@ -4,7 +4,9 @@
   "description": "NodeJS Application to Help Managers Obtain Information and Run Queries and Make Changes to the Employee Database",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "jest",
+    "start": "node index",
+    "watch": "nodemon index"
   },
   "repository": {
     "type": "git",
