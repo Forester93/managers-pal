@@ -63,9 +63,9 @@ npm test
 
 You can reach out to me over one of the following for any questions about this application.
 
-| Name          | Email                    | Phone Numer  | GitHubProfile                                                  |
-| ------------- | ------------------------ | ------------ | -------------------------------------------------------------- |
-| Mark Forester | markforester93@gmail.com | xxxx-xxx-xxx | [Mark Forester Github Profile](https://github.com/forester93/) |
+| Name          | Email                    | Phone Numer       | GitHubProfile                                                  |
+| ------------- | ------------------------ | ----------------- | -------------------------------------------------------------- |
+| Mark Forester | markforester93@gmail.com | +61(0)404-831-362 | [Mark Forester Github Profile](https://github.com/forester93/) |
 
 ## Contributing
 
