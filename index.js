@@ -1,4 +1,3 @@
-const mysql = require("mysql");
 const inquirer = require("inquirer");
 
 // My Packages
@@ -6,19 +5,33 @@ const inquirer = require("inquirer");
 const addDepartment = require("./lib/addDepartment");
 const addRole = require("./lib/addRole");
 const addEmployee = require("./lib/addEmployee");
+const viewDepartments = require("./lib/viewDepartments");
 
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  port: 3306,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
-});
+// Connect DB
+require("dotenv").config();
+const mysql = require("mysql2/promise");
 
-connection.connect((err) => {
-  if (err) throw err;
+let connection;
+async function connect() {
+  try {
+    connection = await mysql.createConnection({
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+}
+connect().then(() => {
   makeChoice();
 });
+// connection.connect((err) => {
+//   if (err) throw err;
+//   console.log("Database Connected Successfully");
+// });
 
 //to get the next choice from the user
 function makeChoice() {
@@ -58,10 +71,23 @@ function makeChoice() {
           addEmployee().then(() => makeChoice());
           break;
         case "View Departments":
+          viewDepartments(connection).then(() => makeChoice());
           break;
         case "View Roles":
           break;
         case "View Employees":
+          break;
+        case "Update Employee Data":
+          break;
+        case "Update Employee Manager":
+          break;
+        case "Delete Department":
+          break;
+        case "Delete Role":
+          break;
+        case "Delete Employee":
+          break;
+        case "View Department's Budget":
           break;
         case "Exit":
           console.log("See you soon!"); //Goodbye prompt
