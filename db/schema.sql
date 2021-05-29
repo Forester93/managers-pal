@@ -478,6 +478,7 @@ ORDER BY
   
 SELECT department_name,CONCAT("$",SUM(expense) ) AS "department_budget"
 FROM (SELECT
+CONCAT(e.first_name," ",e.last_name) AS "name",
   role.salary AS "expense",
   d.department_name
 FROM
@@ -501,3 +502,4 @@ ORDER BY
   ON r.department_id=department.id
   ORDER by r.id;
   
+  DELETE FROM employees WHERE CONCAT(first_name," ",last_name)="Michael Scott";

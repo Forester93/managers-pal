@@ -9,11 +9,14 @@ const addEmployee = require("./lib/addEmployee");
 const viewDepartments = require("./lib/viewDepartments");
 const viewRoles = require("./lib/viewRoles");
 const viewBudgetByDepartment = require("./lib/viewBudgetByDepartment");
+const viewEmployees = require("./lib/viewEmployees");
+const deleteEmployee = require("./lib/deleteEmployee");
+
 // Connect DB
 require("dotenv").config();
 const mysql = require("mysql2/promise");
-const viewEmployees = require("./lib/viewEmployees");
 
+// Define Global DB Connection
 let connection;
 async function connect() {
   try {
@@ -31,11 +34,6 @@ async function connect() {
 connect().then(() => {
   makeChoice();
 });
-
-// connection.connect((err) => {
-//   if (err) throw err;
-//   console.log("Database Connected Successfully");
-// });
 
 //to get the next choice from the user
 function makeChoice() {
@@ -85,13 +83,14 @@ function makeChoice() {
           break;
         case "Update Employee's Data":
           break;
-        case "Update Employee Manager":
+        case "Update Employee's Manager":
           break;
         case "Delete Department":
           break;
         case "Delete Role":
           break;
         case "Delete Employee":
+          deleteEmployee(connection).then(() => makeChoice());
           break;
         case "View Department's Budget":
           viewBudgetByDepartment(connection, cTable).then(() => makeChoice());
