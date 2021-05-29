@@ -487,3 +487,6 @@ FROM
   JOIN role ON e.role_id = role.id
 ORDER BY
   e.id;
+  
+  SELECT CONCAT(employee.first_name," ",employee.last_name) AS "name" FROM employee ORDER BY id;
+  
