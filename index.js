@@ -23,11 +23,12 @@ const viewEmployees = require("./lib/viewEmployees");
 const deleteEmployee = require("./lib/deleteEmployee");
 const deleteRole = require("./lib/deleteRole");
 const deleteDepartment = require("./lib/deleteDepartment");
+const updateRole = require("./lib/updateRole");
+const updateManager = require("./lib/updateManager");
 
 // Connect DB
 require("dotenv").config();
 const mysql = require("mysql2/promise");
-const updateRole = require("./lib/updateRole");
 
 // Define Global DB Connection
 let connection;
@@ -98,6 +99,7 @@ function makeChoice() {
           updateRole(connection).then(() => makeChoice());
           break;
         case "Update Employee's Manager":
+          updateManager(connection).then(() => makeChoice());
           break;
         case "View Employees by Manager":
           break;
