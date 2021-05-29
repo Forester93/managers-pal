@@ -8,6 +8,7 @@ const addRole = require("./lib/addRole");
 const addEmployee = require("./lib/addEmployee");
 const viewDepartments = require("./lib/viewDepartments");
 const viewRoles = require("./lib/viewRoles");
+const viewBudgetByDepartment = require("./lib/viewBudgetByDepartment");
 // Connect DB
 require("dotenv").config();
 const mysql = require("mysql2/promise");
@@ -93,6 +94,7 @@ function makeChoice() {
         case "Delete Employee":
           break;
         case "View Department's Budget":
+          viewBudgetByDepartment(connection, cTable).then(() => makeChoice());
           break;
         case "Exit":
           console.log("See you soon!"); //Goodbye prompt

@@ -475,18 +475,29 @@ FROM
   JOIN department ON role.department_id = department.id
 ORDER BY
   role.id;
-SELECT
-  e.id,
-  CONCAT(e.first_name, " ", e.last_name) AS "full name",
-  role.title AS "role",
-  CONCAT("$", role.salary) AS "salary",
-  CONCAT(temp.first_name, " ", temp.last_name) AS "manager"
+  
+SELECT department_name,CONCAT("$",SUM(expense) ) AS "department_budget"
+FROM (SELECT
+  role.salary AS "expense",
+  d.department_name
 FROM
   employee AS e
   LEFT JOIN employee AS temp ON e.manager_id = temp.id
   JOIN role ON e.role_id = role.id
+  JOIN (SELECT department.id as "department_id",department.name as "department_name" FROM role JOIN department ON role.department_id=role.id) as d ON role.department_id=d.department_id
 ORDER BY
-  e.id;
+  e.id) AS derivedTable
+  WHERE department_name="Senior Management";
+  
+  
   
   SELECT CONCAT(employee.first_name," ",employee.last_name) AS "name" FROM employee ORDER BY id;
+  
+  SELECT 
+   department.name AS "department Name",
+  r.id, r.title, r.salary
+  FROM
+ department JOIN   role AS r
+  ON r.department_id=department.id
+  ORDER by r.id;
   
