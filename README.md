@@ -48,14 +48,14 @@ npm start
 ### Technologies
 
 • JavaScript  
-• NodeJS
+• NodeJS  
 • MySQL
 
 ## Links
 
 ### Link to a Video Tutorial
 
-[Video Tutorial](pending)
+[Video Tutorial](https://drive.google.com/file/d/1Q7YaK-90JPLOMlYu3O01KUs2OJU_oPym/view?usp=sharing)
 
 ### Link to the Github Repository
 
