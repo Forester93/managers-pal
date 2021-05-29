@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+const cTable = require("console.table");
 
 // My Packages
 
@@ -6,10 +7,12 @@ const addDepartment = require("./lib/addDepartment");
 const addRole = require("./lib/addRole");
 const addEmployee = require("./lib/addEmployee");
 const viewDepartments = require("./lib/viewDepartments");
+const viewRoles = require("./lib/viewRoles");
 
 // Connect DB
 require("dotenv").config();
 const mysql = require("mysql2/promise");
+const viewEmployees = require("./lib/viewEmployees");
 
 let connection;
 async function connect() {
@@ -28,6 +31,7 @@ async function connect() {
 connect().then(() => {
   makeChoice();
 });
+
 // connection.connect((err) => {
 //   if (err) throw err;
 //   console.log("Database Connected Successfully");
@@ -71,11 +75,13 @@ function makeChoice() {
           addEmployee().then(() => makeChoice());
           break;
         case "View Departments":
-          viewDepartments(connection).then(() => makeChoice());
+          viewDepartments(connection, cTable).then(() => makeChoice());
           break;
         case "View Roles":
+          viewRoles(connection, cTable).then(() => makeChoice());
           break;
         case "View Employees":
+          viewEmployees(connection, cTable).then(() => makeChoice());
           break;
         case "Update Employee Data":
           break;
@@ -91,6 +97,7 @@ function makeChoice() {
           break;
         case "Exit":
           console.log("See you soon!"); //Goodbye prompt
+          process.exit();
       }
     })
     .catch((err) => {

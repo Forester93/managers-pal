@@ -323,7 +323,7 @@ VALUES
       WHERE
         title = "Warehouse Worker"
     ),
-   3
+    3
   ),
   (
     "Andy",
@@ -455,10 +455,35 @@ VALUES
     ),
     1
   );
-SELECT 
-
+SELECT
   *
 FROM
   employee;
-  
-  SELECT * FROM department ORDER BY id;
+SELECT
+  *
+FROM
+  department
+ORDER BY
+  id;
+SELECT
+  role.id,
+  role.title,
+  role.salary,
+  department.name AS "department"
+FROM
+  role
+  JOIN department ON role.department_id = department.id
+ORDER BY
+  role.id;
+SELECT
+  e.id,
+  CONCAT(e.first_name, " ", e.last_name) AS "full name",
+  role.title AS "role",
+  CONCAT("$", role.salary) AS "salary",
+  CONCAT(temp.first_name, " ", temp.last_name) AS "manager"
+FROM
+  employee AS e
+  LEFT JOIN employee AS temp ON e.manager_id = temp.id
+  JOIN role ON e.role_id = role.id
+ORDER BY
+  e.id;
