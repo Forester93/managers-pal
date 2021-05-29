@@ -1,6 +1,16 @@
 const inquirer = require("inquirer");
 const cTable = require("console.table");
 
+// ASCIIFY
+
+const asciify = require("asciify");
+
+asciify("Manager's Pal", (err, res) => {
+  console.log(res);
+  console.log("\nWelcome to Manager's Pal\n");
+  if (err) return;
+});
+
 // My Packages
 
 const addDepartment = require("./lib/addDepartment");

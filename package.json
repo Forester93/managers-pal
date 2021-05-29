@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Forester93/managers-pal#readme",
   "dependencies": {
+    "asciify": "^1.3.5",
     "console.table": "^0.10.0",
     "dotenv": "^9.0.2",
     "inquirer": "^8.0.0",
