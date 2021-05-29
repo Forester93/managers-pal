@@ -8,7 +8,6 @@ const addRole = require("./lib/addRole");
 const addEmployee = require("./lib/addEmployee");
 const viewDepartments = require("./lib/viewDepartments");
 const viewRoles = require("./lib/viewRoles");
-
 // Connect DB
 require("dotenv").config();
 const mysql = require("mysql2/promise");
@@ -66,7 +65,7 @@ function makeChoice() {
     .then((response) => {
       switch (response.next) {
         case "Add Department":
-          addDepartment().then(() => makeChoice());
+          addDepartment(connection).then(() => makeChoice());
           break;
         case "Add Role":
           addRole().then(() => makeChoice());
