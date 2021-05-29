@@ -1,15 +1,11 @@
 const inquirer = require("inquirer");
+const fs = require("fs");
 const cTable = require("console.table");
+const Path = require("path");
 
 // ASCIIFY
 
 const asciify = require("asciify");
-
-asciify("Manager's Pal", (err, res) => {
-  console.log(res);
-  console.log("\nWelcome to Manager's Pal\n");
-  if (err) return;
-});
 
 // My Packages
 
@@ -32,6 +28,7 @@ require("dotenv").config();
 const mysql = require("mysql2/promise");
 
 // Define Global DB Connection
+
 let connection;
 async function connect() {
   try {
@@ -44,11 +41,66 @@ async function connect() {
     });
   } catch (err) {
     console.error(err);
+    process.exit();
   }
 }
-connect().then(() => {
-  makeChoice();
+
+asciify("Manager's Pal", (err, res) => {
+  console.log(res);
+  console.log("\nWelcome to Manager's Pal\n");
+  setDotEnv();
+  if (err) return;
 });
+
+// set environment variables
+
+function setDotEnv() {
+  const path = Path.join(__dirname, ".env");
+
+  if (fs.existsSync(path) == true) {
+    connect().then(() => {
+      makeChoice();
+    });
+  } else {
+    // file does not exist
+    inquirer
+      .prompt([
+        {
+          type: "password",
+          name: "dbName",
+          message: "Please Enter the Database Name: ",
+        },
+        {
+          type: "password",
+          name: "dbUser",
+          message: "Please Enter the Database User Name: ",
+        },
+        {
+          type: "password",
+          name: "dbPassword",
+          message: "Please Enter the Database Password: ",
+        },
+        {
+          type: "password",
+          name: "dbHost",
+          message: "Please Enter the Host Address: ",
+        },
+        {
+          type: "password",
+          name: "dbPort",
+          message: "Please Enter the Connection Port: ",
+        },
+      ])
+      .then((response) => {
+        let envFile = `DB_HOST=${response.dbHost}\nDB_NAME=${response.dbName}\nDB_USER=${response.dbUser}\nDB_PASS=${response.dbPassword}\nDB_PORT=${response.dbPort}`;
+        fs.writeFileSync(".env", envFile);
+        require("dotenv").config();
+        connect().then(() => {
+          makeChoice();
+        });
+      });
+  }
+}
 
 //to get the next choice from the user
 function makeChoice() {

@@ -6,7 +6,6 @@
 • [Installation](#installation)
 • [Usage](#usage)
 • [Technologies](#technologies)
-• [Test](#test)
 • [Links](#links)
 • [Questions](#questions)
 • [Contributing](#contributing)
@@ -14,6 +13,21 @@
 ## Description
 
 This is a NodeJS Application to Help Managers Obtain Information and Run Queries and Make Changes to the Employee Database.
+
+Features:  
+• View Employees  
+• View Departments  
+• View Roles  
+• Add Departments  
+• Add Roles  
+• Add Employees  
+• Delete Departments  
+• Delete Roles  
+• Delete Employees  
+• Update Employee's Role  
+• Update Employee's Manager  
+• View Budget by Department  
+• View Employees by Manager
 
 ### Installation
 
@@ -37,14 +51,6 @@ npm start
 • NodeJS
 • MySQL
 
-### Test
-
-To test the application you need to run the following command line:
-
-```bash
-npm test
-```
-
 ## Links
 
 ### Link to a Video Tutorial
@@ -57,7 +63,7 @@ npm test
 
 ### Screenshot of the Application
 
-![Screenshot of the Application](./images/screenshot-sample.png)
+![Screenshot of the Application](./assets/images/screenshot.png)
 
 ## Questions
 
