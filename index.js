@@ -27,6 +27,7 @@ const deleteDepartment = require("./lib/deleteDepartment");
 // Connect DB
 require("dotenv").config();
 const mysql = require("mysql2/promise");
+const updateRole = require("./lib/updateRole");
 
 // Define Global DB Connection
 let connection;
@@ -62,7 +63,7 @@ function makeChoice() {
           "View Departments",
           "View Roles",
           "View Employees",
-          "Update Employee's Data",
+          "Update Employee's Role",
           "Update Employee's Manager",
           "View Employees by Manager",
           "Delete Department",
@@ -94,8 +95,11 @@ function makeChoice() {
           viewEmployees(connection, cTable).then(() => makeChoice());
           break;
         case "Update Employee's Role":
+          updateRole(connection).then(() => makeChoice());
           break;
         case "Update Employee's Manager":
+          break;
+        case "View Employees by Manager":
           break;
         case "Delete Department":
           deleteDepartment(connection).then(() => makeChoice());
