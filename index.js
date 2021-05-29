@@ -22,6 +22,7 @@ const viewBudgetByDepartment = require("./lib/viewBudgetByDepartment");
 const viewEmployees = require("./lib/viewEmployees");
 const deleteEmployee = require("./lib/deleteEmployee");
 const deleteRole = require("./lib/deleteRole");
+const deleteDepartment = require("./lib/deleteDepartment");
 
 // Connect DB
 require("dotenv").config();
@@ -92,11 +93,12 @@ function makeChoice() {
         case "View Employees":
           viewEmployees(connection, cTable).then(() => makeChoice());
           break;
-        case "Update Employee's Data":
+        case "Update Employee's Role":
           break;
         case "Update Employee's Manager":
           break;
         case "Delete Department":
+          deleteDepartment(connection).then(() => makeChoice());
           break;
         case "Delete Role":
           deleteRole(connection).then(() => makeChoice());
