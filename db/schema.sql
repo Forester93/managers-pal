@@ -523,3 +523,21 @@ ORDER BY
 UPDATE employee
 SET role_id =(SELECT role.id FROM role WHERE title="Regional Manager")
 WHERE CONCAT(first_name," ",last_name)="Dwight Schrute";
+
+
+SELECT manager_name, derivedTable.name as "employee_name", derivedTable.department_name
+FROM (SELECT
+e.id,
+CONCAT(e.first_name," ",e.last_name) AS "name",
+role.title,
+  role.salary AS "salary",
+  d.department_name,
+  CONCAT(temp.first_name," ",temp.last_name) AS "manager_name"
+FROM
+  employee AS e
+  LEFT JOIN employee AS temp ON e.manager_id = temp.id
+  JOIN role ON e.role_id = role.id
+  JOIN (SELECT department.id as "department_id",department.name as "department_name" FROM role JOIN department ON role.department_id=role.id) as d ON role.department_id=d.department_id
+ORDER BY
+  e.id) AS derivedTable
+  WHERE manager_name="Dwight Schrute";
